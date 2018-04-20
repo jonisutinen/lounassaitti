@@ -33,7 +33,7 @@ for menus in menut:
     for i in paiva:
         string += '<table><tr>'
         try:
-            string += i['title_fi'] + ' ' + i['properties'] + '</tr><br>'
+            string += i['title_fi'] + ' (' + i['properties'] + ')</tr><br>'
         except KeyError:
             string += i['title_fi'] + '<br>'
         string += '<tr>'
