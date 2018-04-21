@@ -35,7 +35,7 @@ for menus in menut:
         try:
             string += i['title_fi'] + ' (' + i['properties'] + ')</tr><br>'
         except KeyError:
-            string += i['title_fi'] + '<br>'
+            string += i['title_fi'] + '</tr><br>'
         string += '<tr>'
         string += i['price'] + '</tr></table>'
 
