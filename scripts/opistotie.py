@@ -37,8 +37,10 @@ for menus in menut:
         except KeyError:
             string += i['title_fi'] + '</tr><br>'
         string += '<tr>'
-        string += i['price'] + '</tr></table>'
-
+        try:
+            string += i['price'] + '</tr></table>'
+        except KeyError:
+            string += '</tr></table>'
 
 file = open("../views/opistotie.html", "w")
 file.write(string.encode('utf-8'))
