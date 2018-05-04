@@ -3,12 +3,10 @@ import json
 import datetime
 from collections import OrderedDict
 
+day = datetime.datetime.now().strftime('%Y/%m/%d')
+language = '/fi'
 
-year = datetime.datetime.today().year
-month = datetime.datetime.today().month
-day = datetime.datetime.today().day
-
-URL = 'https://www.sodexo.fi/ruokalistat/output/weekly_json/28009/' + str(year) + '/' + str(month) + '/' + str(day) + '/fi'
+URL = 'https://www.sodexo.fi/ruokalistat/output/weekly_json/28009/' + day + language
 jsonDoku = urllib.urlopen(URL).read();
 
 string = ''
