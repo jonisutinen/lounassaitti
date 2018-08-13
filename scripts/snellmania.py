@@ -6,8 +6,7 @@ dt = datetime.datetime.now()
 
 dturl = dt.strftime("%Y-%m-%d")
 
-url = "http://www.amica.fi/api/restaurant/menu/week?language=fi&restaurantPageId=6692&weekDate=" + dturl
-
+url = "https://www.fazerfoodco.fi/api/restaurant/menu/week?language=fi&restaurantPageId=180123&weekDate=" + dturl
 jsonDoku = urllib.urlopen(url).read();
 
 djson = json.loads(jsonDoku)
@@ -21,18 +20,23 @@ for day in menut:
     string += "<table class='days'>"
     for name in nimi:
         string += "<tr>"
-        string += '<td>' + name['Name'] + ' '
+        string += '<td><b>' + name['Name'] + '</b> '
         if name['Price'] is None:
             string += ''
         else:
-            string += name['Price']
+            string += '<i>' + name['Price'] + '</i>'
         string += '</td>'
         string += '</tr>'
         string += '<tr>'
         meals = name['Meals']
         string += '<td>'
         for i in meals:
-            string += i['Name'] + '<br>'
+            string += i['Name'] + ' '
+            diets = i['Diets']
+            string += '<i>'
+            for n in diets:
+                string += n + ', '
+            string += '</i><br>'
         string += '<br>'
         string += '</td>'
     string += '</table>'
