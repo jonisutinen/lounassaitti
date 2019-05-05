@@ -1,46 +1,32 @@
-import urllib
-import json
-import datetime
+import xml.etree.ElementTree as ET
+import urllib2
 
-dt = datetime.datetime.now()
+URL = 'https://www.fazerfoodco.fi/modules/MenuRss/MenuRss/CurrentWeek?costNumber=0439&language=fi'
 
-dturl = dt.strftime("%Y-%m-%d")
+xml = urllib2.urlopen(URL)
 
-url = "http://www.amica.fi/api/restaurant/menu/week?language=fi&restaurantPageId=6533&weekDate=" + dturl
-
-jsonDoku = urllib.urlopen(url).read();
-
-djson = json.loads(jsonDoku)
-
-menut = djson['LunchMenus']
+tree = ET.parse(xml)
+root = tree.getroot()
 
 string = ''
-for day in menut:
-    string += '<h2>' + day['DayOfWeek'] + ' ' + day['Date'] + '</h2>' + '<br>'
-    nimi = day['SetMenus']
-    string += "<table class='days'>"
-    for name in nimi:
-        string += "<tr>"
-        string += '<td>' + name['Name'] + ' '
-        if name['Price'] is None:
-            string += ''
-        else:
-            string += name['Price']
-        string += '</td>'
-        string += '</tr>'
-        string += '<tr>'
-        meals = name['Meals']
-        string += '<td>'
-        for i in meals:
-            string += i['Name'] + '<br>'
-        string += '<br>'
-        string += '</td>'
-    string += '</table>'
+for child in root:
+    for child2 in child:
+        if child2.tag == 'title':
+            string += '<h1>' + str(child2.text.encode("utf-8")) + '</h1>'
+        if child2.tag == 'item':
+            for child3 in child2:
+                if child3.tag == 'title':
+                    string += '<br><h2>' + str(child3.text.encode("utf-8")) + '</h2><br>'
+                if child3.tag == 'description':
+                    try:
+                        string += str(child3.text.encode("utf-8"))
+                    except AttributeError:
+                        string += ''
 
 file = open("../views/tietoteknia.html", "w")
-head = open("../head/snellmaniahead.html", "r")
+head = open("../head/head.html", "r")
 headread = head.read()
-file.write(headread + "\n" + string.encode('utf-8') + "\n" + "</body></html>")
+file.write(headread + "\n" + string + "\n" + "</body></html>")
 file.close()
 head.close()
 
