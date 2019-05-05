@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles/snellmaniastyle.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="styles/snellmaniastyle.css">
   <title>Ruokalista</title>
 </head>
 <body>
@@ -28,23 +28,19 @@
       <li class="nav-item">
         <a class="nav-link" id="tietoteknia-tab" data-toggle="tab" href="#tietoteknia" role="tab" aria-controls="tietoteknia" aria-selected="false">Tietoteknia</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" id="opistotie-tab" data-toggle="tab" href="#opistotie" role="tab" aria-controls="opistotie" aria-selected="false">Opistotie</a>
-      </li>
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane fade show active" id="tk" role="tabpanel" aria-labelledby="tk-tab"><br/><br/><div data-include="tk"></div></div>
-      <div class="tab-pane fade" id="round" role="tabpanel" aria-labelledby="round-tab"><br/><br/><div data-include="round"></div></div>
-      <div class="tab-pane fade" id="bistro" role="tabpanel" aria-labelledby="bistro-tab"><br/><br/><div data-include="bistro"></div></div>
-      <div class="tab-pane fade" id="snellmania" role="tabpanel" aria-labelledby="snellmania-tab"><br/><br/><div data-include="snellmania"></div></div>
-      <div class="tab-pane fade" id="canthia" role="tabpanel" aria-labelledby="canthia-tab"><br/><br/><div data-include="canthia"></div></div>
-      <div class="tab-pane fade" id="tietoteknia" role="tabpanel" aria-labelledby="tietoteknia-tab"><br/><br/><div data-include="tietoteknia"></div></div>
-      <div class="tab-pane fade" id="opistotie" role="tabpanel" aria-labelledby="opistotie-tab"><br/><br/><div data-include="opistotie"></div></div>
+      <div class="tab-pane fade show active" id="tk" role="tabpanel" aria-labelledby="tk-tab"><iframe frameBorder="0", width="100%" height="2000" src="views/tk.html"></iframe></div>
+      <div class="tab-pane fade" id="round" role="tabpanel" aria-labelledby="round-tab"><iframe frameBorder="0", width="100%" height="2000" src="views/round.html"></iframe></div>
+      <div class="tab-pane fade" id="bistro" role="tabpanel" aria-labelledby="bistro-tab"><iframe frameBorder="0", width="100%" height="2000" src="views/bistro.html"></iframe></div>
+      <div class="tab-pane fade" id="snellmania" role="tabpanel" aria-labelledby="snellmania-tab"><iframe frameBorder="0" width="100%" height="2000" src="views/snellmania.html"></iframe></div>
+      <div class="tab-pane fade" id="canthia" role="tabpanel" aria-labelledby="canthia-tab"><iframe frameBorder="0", width="100%" height="2000" src="views/canthia.html"></iframe></div>
+      <div class="tab-pane fade" id="tietoteknia" role="tabpanel" aria-labelledby="tietoteknia-tab"><iframe frameBorder="0", width="100%" height="2000" src="views/tietoteknia.html"></iframe></div>
     </div>
     <nav class="navbar sticky-bottom navbar-light bg-light">
-      <div data-include="updated"></div>
-    </nav>
+<iframe frameBorder="0", width="100%" height="30" src="views/updated.html"></iframe>
+</nav>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
@@ -52,13 +48,6 @@
   <script>
   $(function () {
     $('#myTab li:first-child a').tab('show')
-  });
-  $(function(){
-    var includes = $('[data-include]');
-    jQuery.each(includes, function(){
-      var file = 'views/' + $(this).data('include') + '.html';
-      $(this).load(file);
-    });
   });
 </script>
 </body>
