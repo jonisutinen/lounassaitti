@@ -6,21 +6,9 @@ html = urllib.urlopen(URL).read()
 
 soup = BeautifulSoup(html, 'html.parser')
 
-paivays = soup.find('td', attrs={'class': 'main-title'})
-span = paivays.find_all('span')
-
-taulukko = soup.find('table', attrs={'id': 'lunch-content-table'})
-ruoka = taulukko.find_all('table', attrs={'class':'show'})
-
-string = ''
-for n in span:
-    string += str(n) + '<br>'
-string += '<br>'
-
-for i in ruoka:
-    string += str(i)
+taulukko = soup.find('div', attrs={'class': 'lunch-menu-language state--active'})
 
 file = open("../views/round.html", "w")
-file.write(string)
+file.write(str(taulukko))
 file.close()
 print("round doned")
